@@ -35,12 +35,20 @@ const config: HardhatUserConfig = {
     ],
   },
   defaultNetwork: "localhost",
-  namedAccounts: {
-    deployer: {
-      // By default, it will take the first Hardhat account as the deployer
-      default: 0,
+    namedAccounts: {
+      deployer: {
+        default:  process.env.OWNER_1 || 0, // "0x91c0132b0Ce862af2998535b91514746945EB342"
+      },
+      owner1: {
+        default: process.env.OWNER_1 || 1, // "0x91c0132b0Ce862af2998535b91514746945EB342"
+      },
+      owner2: {
+        default: process.env.OWNER_2 || 2, //"0x200F24864d0EAB982eA075DF4cE4da9680053ED7"
+      },
+      owner3: {
+        default: process.env.OWNER_3 || 3, // "0x97D3C5aFe3353eF634a5b7ba9EA2E9Df36EfeEB5" 
+      },
     },
-  },
   networks: {
     // View the networks that are pre-configured.
     // If the network you are looking for is not here you can add new network settings
