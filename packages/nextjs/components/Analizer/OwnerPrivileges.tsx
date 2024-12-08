@@ -1,6 +1,6 @@
 import React from "react";
 import { AlertCircle, CheckCircle2, ShieldAlert } from "lucide-react";
-import type { OwnerPrivilege } from "~~/utils/ownerPrivileges"
+import type { OwnerPrivilege } from "~~/utils/ownerPrivileges";
 
 interface OwnerPrivilegesProps {
   privileges: OwnerPrivilege[];

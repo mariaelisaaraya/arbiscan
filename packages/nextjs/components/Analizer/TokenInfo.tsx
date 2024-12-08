@@ -1,4 +1,3 @@
-
 import { ExternalLink, ShieldAlert, ShieldCheck } from "lucide-react";
 import type { ContractAnalysis } from "~~/utils/types";
 
