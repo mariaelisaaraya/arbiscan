@@ -1,4 +1,5 @@
 import { NETWORKS } from "./networks";
+import type { Network } from "./types";
 import { ethers } from "ethers";
 
 export class ProviderManager {

@@ -95,12 +95,11 @@ export async function analyzeOwnerPrivileges(
     // Check if function exists in bytecode
     const hasFunction = bytecodeStr.includes(functionHash.slice(2));
 
-    //ObserveJEG function  ->  Severity
     if (hasFunction) {
       privileges.push({
         name: info.name,
         description: info.description,
-        severity: info.severity as "high" | "low" | "medium",
+        severity: info.severity,
         confirmed: true,
       });
     }

@@ -173,7 +173,7 @@ export async function analyzeContract(address: string, network: Network): Promis
       contractType: contractStandard.id,
       isVerified,
       sourceCode: verificationData?.sourceCode,
-      compiler: verificationData?.compiler ?? undefined,
+      compiler: verificationData?.compiler,
       implementation: verificationData?.implementation,
       ...securityFeatures,
       functions,
