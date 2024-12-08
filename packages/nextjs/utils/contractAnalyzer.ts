@@ -173,7 +173,7 @@ export async function analyzeContract(address: string, network: Network): Promis
       contractType: contractStandard.id,
       isVerified,
       sourceCode: verificationData?.sourceCode,
-      compiler: verificationData?.compiler,
+      compiler: verificationData?.compiler ?? undefined, // Manejo de null/undefined //ERROR DE VERCEL
       implementation: verificationData?.implementation,
       ...securityFeatures,
       functions,
