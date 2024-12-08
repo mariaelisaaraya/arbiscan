@@ -62,7 +62,7 @@ export interface ContractAnalysis {
     version: string;
     optimization: boolean;
     runs: number;
-  };
+  } | null | undefined;
   hasOwnership: boolean;
   hasPause: boolean;
   hasMint: boolean;
