@@ -31,5 +31,4 @@ export const NETWORKS: Network[] = [
     apiKey: "YourArbiscanApiKey",
     color: "indigo",
   },
-
 ];
