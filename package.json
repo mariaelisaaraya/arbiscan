@@ -36,16 +36,13 @@
   },
   "devDependencies": {
     "husky": "~8.0.3",
-    "lint-staged": "~13.2.2",
-    "prettier": "^3.4.2",
-    "prettier-plugin-solidity": "^1.4.1"
+    "lint-staged": "~13.2.2"
   },
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": ">=18.18.0"
   },
   "dependencies": {
-    "ethers": "^6.13.4",
-    "lucide-react": "^0.468.0"
+    "lucide-react": "^0.464.0"
   }
 }
