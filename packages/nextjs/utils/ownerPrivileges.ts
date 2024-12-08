@@ -100,7 +100,7 @@ export async function analyzeOwnerPrivileges(
       privileges.push({
         name: info.name,
         description: info.description,
-        severity: info.severity as "low" | "medium" | "high",
+        severity: info.severity as "high" | "low" | "medium",
         confirmed: true,
       });
     }
