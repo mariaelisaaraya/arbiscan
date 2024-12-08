@@ -64,7 +64,7 @@ export default function ContractAnalyzer() {
   // };
   return (
     <>
-    hola  mundo
+    hola  mundo!
     </>
     // <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
     //   <div className="max-w-4xl mx-auto">
