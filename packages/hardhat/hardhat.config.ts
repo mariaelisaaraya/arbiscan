@@ -15,7 +15,7 @@ import "hardhat-deploy-ethers";
 const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
 // If not set, it uses the hardhat account 0 private key.
 const deployerPrivateKey =
-  process.env.DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+  process.env.DEPLOYER_PRIVATE_KEY ?? "";
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
@@ -37,16 +37,16 @@ const config: HardhatUserConfig = {
   defaultNetwork: "arbitrumSepolia",
     namedAccounts: {
       deployer: {
-        default:  process.env.OWNER_1 || 0, // "0x91c0132b0Ce862af2998535b91514746945EB342"
+        default:  process.env.OWNER_1 || "0x91c0132b0Ce862af2998535b91514746945EB342",
       },
       owner1: {
-        default: process.env.OWNER_1 || 1, // "0x91c0132b0Ce862af2998535b91514746945EB342"
+        default: process.env.OWNER_1 || "0x91c0132b0Ce862af2998535b91514746945EB342",
       },
       owner2: {
-        default: process.env.OWNER_2 || 2, //"0x200F24864d0EAB982eA075DF4cE4da9680053ED7"
+        default: process.env.OWNER_2 || "0x200F24864d0EAB982eA075DF4cE4da9680053ED7",
       },
       owner3: {
-        default: process.env.OWNER_3 || 3, // "0x97D3C5aFe3353eF634a5b7ba9EA2E9Df36EfeEB5" 
+        default: process.env.OWNER_3 ||  "0x97D3C5aFe3353eF634a5b7ba9EA2E9Df36EfeEB5"
       },
     },
   networks: {
