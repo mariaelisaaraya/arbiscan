@@ -7,7 +7,7 @@ export function HeroSection() {
         <div className="flex-1 space-y-6 text-center">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl">
-              Make Smart Contracts Simple and Safe!
+                Scan Your Contract for Potential Risks
             </h1>
             <h2 className="text-3xl font-semibold tracking-tighter text-primary">
               Your Security Matters
