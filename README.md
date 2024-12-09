@@ -4,6 +4,10 @@
 
 ![1](https://i.imgur.com/Y9Jmj8w.png)
 
+#  Contrato 📃 
+
+[Contrato Arbitrum]()
+
 ## 🤔 ¿Por qué es tan difícil saber si un token o NFT es seguro?
 
 En el mundo de la blockchain, donde todo debería ser transparente, aún nos enfrentamos a problemas como estafas, contratos maliciosos y tokens fraudulentos. 💸 Comprar un NFT o invertir en un token nuevo a menudo se siente como una apuesta, ¿y si hubiera una manera más sencilla de comprobar si es legítimo? 🤷‍♂️
