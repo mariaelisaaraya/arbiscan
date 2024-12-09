@@ -13,7 +13,7 @@ import { useGlobalState } from "~~/services/store/store";
  * Site footer
  */
 export const Footer = () => {
-  const nativeCurrencyPrice = useGlobalState(state => state.nativeCurrency.price);
+  const nativeCurrencyPrice = useGlobalState((state) => state.nativeCurrency.price);
   const { targetNetwork } = useTargetNetwork();
   const isLocalNetwork = targetNetwork.id === hardhat.id;
 
@@ -22,17 +22,8 @@ export const Footer = () => {
       <div>
         <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
           <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
-            {nativeCurrencyPrice > 0 && (
-              <div>
-                <div className="btn btn-primary btn-sm font-normal gap-1 cursor-auto">
-                  <CurrencyDollarIcon className="h-4 w-4" />
-                  <span>{nativeCurrencyPrice.toFixed(2)}</span>
-                </div>
-              </div>
-            )}
             {isLocalNetwork && (
               <>
-                <Faucet />
                 <Link href="/blockexplorer" passHref className="btn btn-primary btn-sm font-normal gap-1">
                   <MagnifyingGlassIcon className="h-4 w-4" />
                   <span>Block EXPLORER</span>
@@ -43,38 +34,49 @@ export const Footer = () => {
           <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
         </div>
       </div>
-      <div className="w-full">
-        <ul className="menu menu-horizontal w-full">
-          <div className="flex justify-center items-center gap-2 text-sm w-full">
-            <div className="text-center">
-              <a href="https://github.com/scaffold-eth/se-2" target="_blank" rel="noreferrer" className="link">
-                Fork me
-              </a>
+
+      {/* Features section */}
+      <section className="container py-12 md:py-24">
+        <h2 className="text-2xl font-bold text-center mb-8">Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="card border-none shadow-lg bg-gradient-to-b from-background to-background/80 text-center flex-grow p-4">
+            <div className="flex items-center justify-center mb-4">
+              <CurrencyDollarIcon className="h-6 w-6 text-primary mr-2" />
+              <div className="text-xl">Automatic Contract Scanning</div>
             </div>
-            <span>·</span>
-            <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
-              <a
-                className="flex justify-center items-center gap-1"
-                href="https://buidlguidl.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a href="https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA" target="_blank" rel="noreferrer" className="link">
-                Support
-              </a>
+            <div className="card-content">
+              <div className="text-base">Detect vulnerabilities in smart contracts using advanced scanning technology.</div>
             </div>
           </div>
-        </ul>
-      </div>
+          <div className="card border-none shadow-lg bg-gradient-to-b from-background to-background/80 text-center flex-grow p-4">
+            <div className="flex items-center justify-center mb-4">
+              <MagnifyingGlassIcon className="h-6 w-6 text-primary mr-2" />
+              <div className="text-xl">Simple Integrations</div>
+            </div>
+            <div className="card-content">
+              <div className="text-base">Easily connect to your favorite tools and workflows for enhanced analysis.</div>
+            </div>
+          </div>
+          <div className="card border-none shadow-lg bg-gradient-to-b from-background to-background/80 text-center flex-grow p-4">
+            <div className="flex items-center justify-center mb-4">
+              <HeartIcon className="h-6 w-6 text-primary mr-2" />
+              <div className="text-xl">451+ Vulnerability Detectors</div>
+            </div>
+            <div className="card-content">
+              <div className="text-base">Comprehensive security analysis covering all known attack vectors.</div>
+            </div>
+          </div>
+          <div className="card border-none shadow-lg bg-gradient-to-b from-background to-background/80 text-center flex-grow p-4">
+            <div className="flex items-center justify-center mb-4">
+              <CurrencyDollarIcon className="h-6 w-6 text-primary mr-2" />
+              <div className="text-xl">Generate Audit Reports</div>
+            </div>
+            <div className="card-content">
+              <div className="text-base">Generate detailed reports with clear recommendations for enhancing security.</div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
