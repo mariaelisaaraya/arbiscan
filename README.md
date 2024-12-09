@@ -6,7 +6,7 @@
 
 #  Contrato 📃 
 
-[Contrato Arbitrum]()
+[Contrato Arbitrum](https://sepolia.arbiscan.io/verifyContract-solc-json?a=0x0253017c1184ab4150e2106667791a3d08f085c8&c=v0.8.20%2bcommit.a1b79de6&lictype=3)
 
 ## 🤔 ¿Por qué es tan difícil saber si un token o NFT es seguro?
 
