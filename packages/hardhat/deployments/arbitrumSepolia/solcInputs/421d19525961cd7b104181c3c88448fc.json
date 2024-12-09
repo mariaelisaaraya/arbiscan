@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/AccessMoreInfoContract.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract AccessMoreInfoContract {\n    mapping(address => bool) public owners;\n    address[] ownerList;\n    uint256 public infoAccessPrice = 0.0001 ether;\n    mapping(address => bool) public withdrawalApprovals;\n    uint256 public approvalsCount;\n\n    event InfoAccessed(address indexed user, uint256 amountPaid, address indexed targetContract);\n    event WithdrawInitiated(address indexed by);\n    event WithdrawCompleted(address indexed by, uint256 amount);\n\n    modifier onlyOwners() {\n        require(owners[msg.sender], \"Solo los owners pueden realizar esta accion\");\n        _;\n    }\n\n    constructor(address[] memory initialOwners) {\n        require(initialOwners.length == 3, \"Debe haber exactamente 3 owners\");\n        for (uint256 i = 0; i < initialOwners.length; i++) {\n            owners[initialOwners[i]] = true;\n            ownerList.push(initialOwners[i]);\n        }\n    }\n\n    function getOwners() external view returns (address[] memory) {\n        return ownerList;\n    }\n\n    function setInfoAccessPrice(uint256 newPrice) external onlyOwners {\n        infoAccessPrice = newPrice;\n    }\n        function accessMoreInfo(address user, address targetContract) external payable {\n        require(user != address(0), \"Por favor, proporciona una direccion de usuario valida\");\n        require(targetContract != address(0), \"Por favor, proporciona una direccion de contrato valida\");\n        require(msg.value == infoAccessPrice, \"Debes enviar exactamente el monto requerido para acceder a la informacion\");\n\n        emit InfoAccessed(user, msg.value, targetContract);\n    }\n\n    function approveWithdrawal() external onlyOwners {\n        require(!withdrawalApprovals[msg.sender], \"Ya has aprobado esta accion\");\n        withdrawalApprovals[msg.sender] = true;\n        approvalsCount++;\n\n        emit WithdrawInitiated(msg.sender);\n\n        if (approvalsCount == ownerList.length) {\n            _withdraw();\n        }\n    }\n\n    function _withdraw() private {\n        uint256 balance = address(this).balance;\n        require(balance > 0, \"No hay fondos para retirar\");\n        uint256 share = balance / ownerList.length;\n\n        // Transferir la misma cantidad a cada propietario\n        for (uint256 i = 0; i < ownerList.length; i++) {\n            payable(ownerList[i]).transfer(share);\n        }\n\n        // Restablecer las aprobaciones y contador\n        for (uint256 i = 0; i < ownerList.length; i++) {\n            withdrawalApprovals[ownerList[i]] = false;\n        }\n        approvalsCount = 0;\n\n        emit WithdrawCompleted(msg.sender, balance);\n    }\n\n    // Función para consultar el balance actual del contrato\n    function getContractBalance() external view returns (uint256) {\n        return address(this).balance;\n    }\n    // Permitir que el contrato reciba pagos directamente\n    receive() external payable {}\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
