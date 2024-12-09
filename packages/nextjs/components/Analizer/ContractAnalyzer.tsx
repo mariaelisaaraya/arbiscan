@@ -44,32 +44,31 @@ export default function ContractAnalyzer() {
 
   const handlePayForAccess = async () => {
     try {
-      // Asegúrate de que las direcciones no sean undefined y usa un tipo explícito
       if (!connectedAddress || !tokenAddress) {
         console.error("Invalid address: Address cannot be undefined");
         return;
       }
-  
+
       await writeContractAsync(
         {
           functionName: "accessMoreInfo",
-          args: [connectedAddress as `0x${string}`, tokenAddress as `0x${string}`], // Forzamos el tipo correcto
-          value: parseEther("0.01"), // Valor de 0.01 Ether
+          args: [connectedAddress as `0x${string}`, tokenAddress as `0x${string}`],
+          value: parseEther("0.01"),
         },
         {
           onBlockConfirmation: (txnReceipt) => {
             console.log("📦 Transaction confirmed, blockHash:", txnReceipt.blockHash);
             setHasPaid(true);
           },
-        },
+        }
       );
     } catch (e) {
       console.error("Error sending token", e);
     }
   };
-  
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
+    <div className="min-h-auto bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Contract Analyzer</h1>
@@ -79,19 +78,19 @@ export default function ContractAnalyzer() {
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-6 mb-8">
-          <div className="flex gap-4">
+        <div className="bg-gray-800 rounded-lg p-6 mb-8 shadow-xl">
+          <div className="flex gap-4 items-center">
             <input
               type="text"
               value={tokenAddress}
-              onChange={e => setTokenAddress(e.target.value)}
+              onChange={(e) => setTokenAddress(e.target.value)}
               placeholder="Enter token contract address"
-              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none"
+              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             <button
               onClick={handleAnalyze}
               disabled={loading}
-              className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors disabled:opacity-50"
+              className="btn btn-primary btn-lg w-32 transition duration-200 ease-in-out disabled:opacity-50"
             >
               {loading ? "Analyzing..." : "Analyze"}
             </button>
@@ -106,24 +105,23 @@ export default function ContractAnalyzer() {
         </div>
 
         {analysis && (
-          <div className="space-y-6">
+          <div className="space-y-6 min-h-[200px]">
             <TokenInfo analysis={analysis} />
             <SecurityAnalysis analysis={analysis} />
             <OwnerPrivileges privileges={analysis.ownerPrivileges} />
-            {/* Botón para realizar el pago */}
-            {analysis.functions.length > 0 &&
-              (!hasPaid ? (
-                <div className="mt-4">
-                  <button
-                    onClick={handlePayForAccess}
-                    className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium transition-colors"
-                  >
-                    Pay to View Contract Functions
-                  </button>
-                </div>
-              ) : (
-                <FunctionList functions={analysis.functions} /> // Mostrar funciones solo después del pago
-              ))}
+
+            {analysis.functions.length > 0 && !hasPaid ? (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={handlePayForAccess}
+                  className="btn btn-success btn-lg transition duration-200 ease-in-out"
+                >
+                  Pay to View Contract Functions
+                </button>
+              </div>
+            ) : (
+              hasPaid && <FunctionList functions={analysis.functions} />
+            )}
           </div>
         )}
       </div>
