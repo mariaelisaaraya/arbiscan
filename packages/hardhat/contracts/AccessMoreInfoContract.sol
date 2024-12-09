@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract AccessMoreInfoContract {
     mapping(address => bool) public owners;
     address[] ownerList;
-    uint256 public infoAccessPrice = 0.01 ether;
+    uint256 public infoAccessPrice = 0.0001 ether;
     mapping(address => bool) public withdrawalApprovals;
     uint256 public approvalsCount;
 

@@ -53,7 +53,7 @@ export default function ContractAnalyzer() {
         {
           functionName: "accessMoreInfo",
           args: [connectedAddress as `0x${string}`, tokenAddress as `0x${string}`],
-          value: parseEther("0.01"),
+          value: parseEther("0.0001"),
         },
         {
           onBlockConfirmation: (txnReceipt) => {
